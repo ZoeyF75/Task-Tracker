@@ -26,7 +26,13 @@ const App = () => {
   ]);
 
   //Add Task
-
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    //new task = generated id and everything in task object from onAdd in onSubmit
+    const newTask = {id, ...task};
+    //copies tasks that are already there and adds new task...similar to append in JQuery Tweeter Project
+    setTasks([...tasks, newTask]);
+  }
 
   //Delete Task
   const deleteTask = (id) => {
@@ -44,7 +50,7 @@ const App = () => {
   return (
     <div className="container">
       <Header /> 
-      <AddTask />
+      <AddTask onAdd={addTask} />
       {tasks.length > 0 ? 
       <Tasks 
         tasks={tasks}
